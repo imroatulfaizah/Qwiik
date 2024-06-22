@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FAIZAH\\source\\repos\\Qwiik\\Qwiik.csproj": {}
+    "C:\\Users\\FAIZAH\\source\\repos\\QwiikApp\\Qwiik\\Qwiik.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FAIZAH\\source\\repos\\Qwiik\\Qwiik.csproj": {
+    "C:\\Users\\FAIZAH\\source\\repos\\QwiikApp\\Qwiik\\Qwiik.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FAIZAH\\source\\repos\\Qwiik\\Qwiik.csproj",
+        "projectUniqueName": "C:\\Users\\FAIZAH\\source\\repos\\QwiikApp\\Qwiik\\Qwiik.csproj",
         "projectName": "Qwiik",
-        "projectPath": "C:\\Users\\FAIZAH\\source\\repos\\Qwiik\\Qwiik.csproj",
+        "projectPath": "C:\\Users\\FAIZAH\\source\\repos\\QwiikApp\\Qwiik\\Qwiik.csproj",
         "packagesPath": "C:\\Users\\FAIZAH\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FAIZAH\\source\\repos\\Qwiik\\obj\\",
+        "outputPath": "C:\\Users\\FAIZAH\\source\\repos\\QwiikApp\\Qwiik\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\FAIZAH\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,9 +45,27 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.2, )"
             },
             "Moq": {
               "target": "Package",

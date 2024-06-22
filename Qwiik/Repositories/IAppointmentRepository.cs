@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Qwiik.Models;
+﻿using Qwiik.Models;
 
-namespace Qwiik.Repositories
+public interface IAppointmentRepository
 {
-    public interface IAppointmentRepository
-    {
-        IEnumerable<Appointment> GetAppointments(DateTime date);
-        Appointment BookAppointment(Appointment appointment);
-        void SetOffDay(DateTime date);
-        bool IsOffDay(DateTime date);
-        void SetMaxAppointmentsPerDay(int maxAppointments);
-        int GetMaxAppointmentsPerDay();
-    }
+    IEnumerable<Appointment> GetAppointments(DateTime date);
+    Task<Appointment> BookAppointmentAsync(Appointment appointment);
+    string SetOffDay(DateTime date);
+    void SetMaxAppointmentsPerDay(int maxAppointments);
+    int GetMaxAppointmentsPerDay();
 }

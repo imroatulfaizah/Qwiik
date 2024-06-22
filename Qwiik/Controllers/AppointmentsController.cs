@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Qwiik.Models;
-using Qwiik.Repositories;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -13,6 +12,8 @@ public class AppointmentsController : ControllerBase
         _repository = repository;
     }
 
+    #region API Endpoints
+
     [HttpGet("{date}")]
     public IActionResult GetAppointments(DateTime date)
     {
@@ -21,17 +22,37 @@ public class AppointmentsController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult BookAppointment([FromBody] Appointment appointment)
+    public async Task<IActionResult> BookAppointment([FromBody] Appointment appointment)
     {
-        var bookedAppointment = _repository.BookAppointment(appointment);
+        var bookedAppointment = await _repository.BookAppointmentAsync(appointment);
         return Ok(bookedAppointment);
     }
 
     [HttpPost("offday")]
     public IActionResult SetOffDay([FromBody] DateTime date)
     {
-        _repository.SetOffDay(date);
-        return Ok();
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        if (date == DateTime.MinValue)
+        {
+            return BadRequest("Please provide a valid date.");
+        }
+
+
+        if (date.Date < DateTime.UtcNow.Date)
+        {
+            return BadRequest("The date cannot be in the past.");
+        }
+        var resultMessage = _repository.SetOffDay(date);
+        if (resultMessage.Contains("already been set"))
+        {
+            return BadRequest(resultMessage);
+        }
+
+        return Ok(resultMessage);
     }
 
     [HttpPost("maxappointments")]
@@ -40,4 +61,13 @@ public class AppointmentsController : ControllerBase
         _repository.SetMaxAppointmentsPerDay(maxAppointments);
         return Ok();
     }
+
+    [HttpGet("maxappointments")]
+    public IActionResult GetMaxAppointments()
+    {
+        var maxAppointments = _repository.GetMaxAppointmentsPerDay();
+        return Ok(maxAppointments);
+    }
+
+    #endregion
 }

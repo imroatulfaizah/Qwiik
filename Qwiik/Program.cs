@@ -1,11 +1,18 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Qwiik.Repositories;
+using Qwiik;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddDbContext<QwiikDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("Qwiik")
+        )
+    );
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {
